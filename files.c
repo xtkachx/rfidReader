@@ -133,8 +133,6 @@ int writeFile(int numberPosProduct, int state)
   if (fProduct == NULL){
       printf ("Ошибка при записи в файл\n");
       return -1;
-    } else {
-      //      printf ("считаны строки:\n");
     }
   int i = 0;
   //читаем весь файл и записываем в буфер каждую строчкуasdas
@@ -212,4 +210,30 @@ int rFileWStruct(void)
   nProduct = i;
   fclose(file);
   return 0;
+}
+void printInfo(int state)
+{
+  if (state != stateInfo){
+      if (state == 1){
+          printf("Считыватель активен(!), дверь закрыта!\n");
+          stateInfo = state;
+        }
+      if (state == 2){
+          printf("Считыватель активен(!), дверь открыта(!)!\n");
+          stateInfo = state;
+        }
+      if (state == 3){
+          printf("Дверь закрыли, ожидаем изменения RFID_ENABLE! Совершить Транзакцию! \n");
+          stateInfo = state;
+        }
+      if (state == 5){
+          printf("Недоступное состояние!\n");
+          stateInfo = state;
+        }
+      if (state == 6){
+          printf("Считыватель не активен, дверь закрыта!\n");
+          stateInfo = state;
+        }
+
+    }
 }

@@ -34,4 +34,5 @@ void rewriteBuyFile(void);
 int writeFile(int numberPosProduct, int state);
 void rewriteProductFile(void);
 int rFileWStruct(void);
+void printInfo(int state);
 #endif // FILES_H

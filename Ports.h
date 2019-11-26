@@ -16,7 +16,9 @@ extern int oldState;
 extern int oldOut1;
 extern int oldOut2;
 extern unsigned char masGPO[4];
-
+extern u16 port_num;
+extern u8 real_ip[4];
+extern TID_READ_PARAM tid_param;
 void readPorts(void);  //чтение тегов и установка состояния портов
 void setPorts(void);
 #endif // PORTS_H

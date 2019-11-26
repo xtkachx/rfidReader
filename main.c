@@ -10,6 +10,8 @@
 #define OUT_1 1
 #define OUT_2 2
 #define CHECK_DOOR 3
+int ret = 0;
+int flagTransaction = 0;
 
 int masCounterTag[50] = {0};
 
@@ -55,33 +57,6 @@ int callback_test(S_TAG* tag_data)
   return 0;
 }
 
-
-void printInfo(int state)
-{
-  if (state != stateInfo){
-      if (state == 1){
-          printf("Считыватель активен(!), дверь закрыта!\n");
-          stateInfo = state;
-        }
-      if (state == 2){
-          printf("Считыватель активен(!), дверь открыта(!)!\n");
-          stateInfo = state;
-        }
-      if (state == 3){
-          printf("Дверь закрыли, ожидаем изменения RFID_ENABLE! Совершить Транзакцию! \n");
-          stateInfo = state;
-        }
-      if (state == 5){
-          printf("Недоступное состояние!\n");
-          stateInfo = state;
-        }
-      if (state == 6){
-          printf("Считыватель не активен, дверь закрыта!\n");
-          stateInfo = state;
-        }
-
-    }
-}
 void readerStop()
 {
   Stop();
@@ -90,19 +65,11 @@ void readerStop()
 int main(void)
 {
   printf ("Старт! \n");
-  int ret = 0;
-  int flagTransaction = 0;
-  u16 port_num = 9090;
-  u8 real_ip[4] = {192, 168, 0, 116};
   rFileWStruct();
   rewriteBuyFile();
-  ret = CreateTCPConn(real_ip, port_num, callback_test);
+  CreateTCPConn(real_ip, port_num, callback_test);
   readerStop();
   sleep(1);
-  TID_READ_PARAM tid_param;
-  tid_param.mode =
-  tid_param.mode = 0;
-  tid_param.read_len = 6;
   while(1){
       usleep(10000);
       if (!(readFile(RFID_ENABLE)) &&

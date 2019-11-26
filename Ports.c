@@ -3,6 +3,9 @@ int oldState = 0;
 unsigned char masGPO[4] = {1,0, 2,0};
 int oldOut1 = 0;
 int oldOut2 = 0;
+u16 port_num = 9090;
+u8 real_ip[4] = {192, 168, 0, 116};
+TID_READ_PARAM tid_param = {0, 6};
 void readPorts(void)  //чтение тегов и установка состояния портов
 {
   u8 real_len = 0;
@@ -20,7 +23,7 @@ void readPorts(void)  //чтение тегов и установка состо
 }
 void setPorts()
 {
-  if ((oldOut1 != (u8)readFile(OUT_1)) || (u8)readFile(OUT_2)){
+  if ((oldOut1 != ((u8)readFile(OUT_1)) || (u8)readFile(OUT_2))){
       masGPO[1] = (u8)readFile(OUT_1);
       masGPO[3] = (u8)readFile(OUT_2);
       oldOut1 = (int)masGPO[1];
