@@ -137,7 +137,7 @@ int writeFile(int numberPosProduct, int state)
       //      printf ("считаны строки:\n");
     }
   int i = 0;
-  //читаем весь файл и записываем в буфер каждую строчку
+  //читаем весь файл и записываем в буфер каждую строчкуasdas
   while (i < nProduct) {
       if (NULL == fgets (bufStrFake,sizeof(bufStrFake),fProduct)){
           break;
